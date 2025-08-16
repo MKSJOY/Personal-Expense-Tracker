@@ -42,7 +42,7 @@ export default function SignupPage() {
 
       console.log("Signup success:", res.data);
       setLoading(false);
-      router.push("/login"); // redirect to login after signup
+      router.push("/dashboard"); // redirect to dashboard after signup
     } catch (err) {
       console.error("Signup error:", err.response?.data || err.message);
       alert(err.response?.data?.message || "Signup failed");
