@@ -13,7 +13,7 @@ const app = express();
 app.use(helmet());
 
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'https://personal-expense-tracker-mks.vercel.app/',
+  origin: process.env.CORS_ORIGIN || 'https://personal-expense-tracker-mks.vercel.app',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
 }));
