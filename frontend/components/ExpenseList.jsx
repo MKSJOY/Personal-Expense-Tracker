@@ -26,29 +26,47 @@ export default function ExpenseList({ expenses, refresh }) {
           }}
         />
       )}
+
+      {/* Responsive Table */}
       <div className="overflow-x-auto">
-        <table className="table w-full">
+        <table className="table table-zebra w-full min-w-[500px]">
           <thead>
             <tr>
-              <th>Title</th>
-              <th>Amount</th>
-              <th>Category</th>
-              <th>Date</th>
-              <th>Actions</th>
+              <th className="px-2 py-1">Title</th>
+              <th className="px-2 py-1">Amount</th>
+              <th className="px-2 py-1">Category</th>
+              <th className="px-2 py-1">Date</th>
+              <th className="px-2 py-1">Actions</th>
             </tr>
           </thead>
           <tbody>
             {expenses.map((e) => (
               <tr key={e._id}>
-                <td>{e.title}</td>
-                <td>BDT {e.amount.toFixed(2)}</td>
+                <td className="whitespace-nowrap">{e.title}</td>
+                <td className="whitespace-nowrap">
+                  BDT {e.amount.toFixed(2)}
+                </td>
                 <td>
                   <span className="badge badge-primary">{e.category}</span>
                 </td>
-                <td>{new Date(e.date).toLocaleDateString()}</td>
-                <td className="space-x-2">
-                  <button className="btn btn-sm btn-info font-bold text-white bg-orange-500 p-1" onClick={() => setEditingExpense(e)}>Edit</button>
-                  <button className="btn btn-sm btn-error font-bold text-white bg-red-600 p-1" onClick={() => handleDelete(e._id)}>Delete</button>
+                <td className="whitespace-nowrap">
+                  {new Date(e.date).toLocaleDateString()}
+                </td>
+                <td>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      className="btn btn-xs bg-orange-500 text-white"
+                      onClick={() => setEditingExpense(e)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="btn btn-xs bg-red-600 text-white"
+                      onClick={() => handleDelete(e._id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
