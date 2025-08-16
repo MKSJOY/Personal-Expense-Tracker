@@ -2,19 +2,20 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Lock, Eye, EyeOff, Loader2 } from "lucide-react";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 import Navbar from "@/components/Navbar.jsx";
 
 export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
+    fullname: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
-  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,12 +38,29 @@ export default function SignupPage() {
 
   return (
     <>
-      
       <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-100 to-blue-200 p-4">
         <div className="card w-full max-w-md bg-white shadow-xl p-6 rounded-lg animate-fadeIn">
-          <h2 className="text-xl font-semi-bold text-center text-green-600 p-4">Keep Track of Your Personal Expense 💸</h2>
-          <h2 className="text-3xl font-bold text-center mb-6 text-blue-600 p-4">Sign Up</h2>
+          <h2 className="text-xl font-semi-bold text-center text-green-600 p-4">
+            Keep Track of Your Personal Expense 💸
+          </h2>
+          <h2 className="text-3xl font-bold text-center mb-6 text-blue-600 p-4">
+            Sign Up
+          </h2>
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            {/* Full Name */}
+            <div className="form-control">
+              <input
+                type="text"
+                name="fullname"
+                value={formData.fullname}
+                onChange={handleChange}
+                placeholder="Full Name"
+                className="input input-bordered w-full"
+                required
+              />
+            </div>
+
+            {/* Email */}
             <div className="form-control relative">
               <input
                 type="email"
@@ -55,6 +73,7 @@ export default function SignupPage() {
               />
             </div>
 
+            {/* Password */}
             <div className="form-control relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -74,16 +93,7 @@ export default function SignupPage() {
               </button>
             </div>
 
-            <input
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              placeholder="Confirm Password"
-              className="input input-bordered w-full"
-              required
-            />
-
+            {/* Submit Button */}
             <button
               type="submit"
               className="btn btn-primary w-full flex justify-center items-center gap-2 hover:bg-blue-700 transition"
@@ -92,6 +102,7 @@ export default function SignupPage() {
               {loading ? <Loader2 className="animate-spin w-5 h-5" /> : "Sign Up"}
             </button>
           </form>
+
           <p className="text-center mt-4 text-sm">
             Already have an account?{" "}
             <Link href="/login" className="text-blue-600 hover:underline">
