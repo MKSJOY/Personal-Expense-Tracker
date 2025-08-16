@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "./auth";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000", // adjust if backend is on a different port
+  baseURL: process.env.NEXT_PUBLIC_API_URL, // adjust if backend is on a different port
   headers: {
     "Content-Type": "application/json",
   },
