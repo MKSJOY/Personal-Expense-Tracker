@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import API from "@/utils/api";
+import { setToken } from "@/utils/auth";
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
@@ -31,7 +32,6 @@ export default function SignupPage() {
       return;
     }
 
-    
 
     try {
       const res = await API.post("/auth/register", {
@@ -40,12 +40,18 @@ export default function SignupPage() {
         password: formData.password,
       });
 
-      console.log("Signup success:", res.data);
-      setLoading(false);
-      router.push("/dashboard"); // redirect to dashboard after signup
+      // Store token in localStorage
+      setToken(res.data.token);
+
+      // Set default Authorization header for future requests
+      API.defaults.headers.common["Authorization"] = `Bearer ${res.data.token}`;
+
+      // Redirect to dashboard
+      router.push("/dashboard");
     } catch (err) {
       console.error("Signup error:", err.response?.data || err.message);
       alert(err.response?.data?.message || "Signup failed");
+    } finally {
       setLoading(false);
     }
   };
@@ -94,7 +100,6 @@ export default function SignupPage() {
               {showPassword ? <EyeOff /> : <Eye />}
             </button>
           </div>
-
 
           <button
             type="submit"
