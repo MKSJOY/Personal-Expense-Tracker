@@ -48,9 +48,6 @@ export default function ExpenseFilter({ filters, setFilters }) {
         />
       </div>
       <div className="flex space-x-2">
-        <button className="btn btn-primary font-bold text-white bg-blue-700 p-1" onClick={() => setFilters({ ...filters })}>
-          Apply
-        </button>
         <button className="btn btn-ghost font-bold text-white bg-blue-700 p-1" onClick={handleReset}>
           Reset
         </button>
