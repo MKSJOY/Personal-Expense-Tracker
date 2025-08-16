@@ -31,7 +31,7 @@ app.use(morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'combined'));
 app.get('/', (_req, res) => res.json({ ok: true, name: 'Expense Tracker API' }));
 
 // Mount your router at a relative path
-app.use('/api', router);  // ✅ use relative path, not full URL
+app.use('/', router);  // ✅ use relative path, not full URL
 
 // 404 handler
 app.use((req, res) => res.status(404).json({ message: 'Not found' }));
