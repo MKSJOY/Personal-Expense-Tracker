@@ -31,11 +31,7 @@ export default function SignupPage() {
       return;
     }
 
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match");
-      setLoading(false);
-      return;
-    }
+    
 
     try {
       const res = await API.post("/auth/register", {
@@ -99,15 +95,6 @@ export default function SignupPage() {
             </button>
           </div>
 
-          <input
-            type="password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            placeholder="Confirm Password"
-            className="input input-bordered w-full"
-            required
-          />
 
           <button
             type="submit"
