@@ -7,7 +7,7 @@ It helps users track income, expenses, and budgets with secure authentication.
 ## 🚀 Features
 
 🔐 Authentication: Signup, Login, and Logout with JWT
-📊 Expense Management: Add, edit, delete expenses & incomes
+📊 Expense Management: Add, edit, delete expenses
 🏷️ Category Support: Organize expenses by category
 ⏳ Filter by Date Range: View expenses within custom date ranges  
 📅 Dashboard Overview: Track monthly totals and summaries
