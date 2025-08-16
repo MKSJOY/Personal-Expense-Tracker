@@ -42,7 +42,7 @@ export default function DashboardPage() {
           <ExpenseList expenses={expenses} refresh={fetchExpenses} />
           <PieChart expenses={expenses} />
         </div>
-        <div className="text-lg font-bold">Total Expense: ${total}</div>
+        <div className="text-lg font-bold">Total Expense: {total} BDT</div>
       </div>
     </>
   );
